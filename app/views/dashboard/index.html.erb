@@ -1,0 +1,16 @@
+<% if can? :manage, @users %>
+  <h2>Users</h2>
+  <% for user in @users %>
+    <p><%= user.email %>( <%= user.role %> ) 
+       <%= link_to "Edit User", edit_user_path(user) %>
+        <% unless user.email == current_user.email %>
+          <%= link_to "Delete User", user, :confirm => "Are you sure?", :method => :delete %>
+        <% end %>
+  <% end %>
+</p>
+<%= link_to 'New User', new_user_path %><p/>
+<%= link_to 'Tasks',root_path %>
+<% else %>
+  <p>You are not authorized to view this page.</p>
+<%= link_to 'Tasks',root_path %>
+<% end %>
